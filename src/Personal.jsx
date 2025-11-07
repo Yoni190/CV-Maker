@@ -1,0 +1,35 @@
+import { useState } from 'react'
+import Info from './Info'
+
+function Personal({formData, setFormData}) {
+
+    const container = {
+        display: 'flex',
+        flexDirection: 'column',
+        borderRadius: '10px',
+        boxShadow:  '5px 5px 10px rgba(0, 0, 0, 0.2)',
+        padding: '15px'
+    }
+
+    const onChange = (event) => {
+        const {name, value} = event.target
+        setFormData({...formData, [name]: value})
+    }
+
+    return (
+        <div style={container}>
+            <Info labelName="Full Name" inputName="name" value={formData.name} onChangeText={onChange}/>
+            <Info labelName="Email" inputType="email" inputName="email" value={formData.email} onChangeText={onChange}/>
+            <Info labelName="Phone Number" inputName="phoneNumber" value={formData.phoneNumber} onChangeText={onChange}/>
+            <label htmlFor="description">Description</label>
+            <textarea name="description" id="description" placeholder='Describe yourself...' value={formData.description} onChange={onChange}></textarea>
+
+            
+            
+            
+        </div>
+    )
+}
+
+
+export default Personal
