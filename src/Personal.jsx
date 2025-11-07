@@ -18,6 +18,7 @@ function Personal({formData, setFormData}) {
 
     return (
         <div style={container}>
+            <h2 style={{textAlign: 'left'}}>Personal Information</h2>
             <Info labelName="Full Name" inputName="name" value={formData.name} onChangeText={onChange}/>
             <Info labelName="Email" inputType="email" inputName="email" value={formData.email} onChangeText={onChange}/>
             <Info labelName="Phone Number" inputName="phoneNumber" value={formData.phoneNumber} onChangeText={onChange}/>
