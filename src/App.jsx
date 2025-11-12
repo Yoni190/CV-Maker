@@ -5,6 +5,7 @@ import './App.css'
 import Personal from './Personal'
 import CV from './CV'
 import Education from './Education'
+import Work from './Work'
 
 function App() {
 
@@ -30,11 +31,25 @@ function App() {
     name: "",
     email: "",
     phoneNumber: "",
-    description: ""
+    address: "",
   })
 
   const [educationData, setEducationData] = useState({
-    universityName: ""
+    universityName: "",
+    universityProgram: "",
+    city: "",
+    startDate: "",
+    graduationDate: "",
+    bullets: [""]
+  })
+
+  const [workData, setWorkData] = useState({
+    companyName: "",
+    position: "",
+    city: "",
+    workStart: "", 
+    workEnd: "",
+    bullets: [""]
   })
 
   return (
@@ -44,10 +59,11 @@ function App() {
         <div style={half}>
           <Personal formData={formData} setFormData={setFormData} />
           <Education educationData={educationData} setEducationData={setEducationData}/>
+          <Work workData={workData} setWorkData={setWorkData}/>
         </div>
         
         <div style={{...half, ...CVStyle}}>
-          <CV formData={formData} educationData={educationData}/>
+          <CV formData={formData} educationData={educationData} workData={workData}/>
         </div>
       </div>
       

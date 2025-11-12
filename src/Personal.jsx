@@ -22,9 +22,7 @@ function Personal({formData, setFormData}) {
             <Info labelName="Full Name" inputName="name" value={formData.name} onChangeText={onChange}/>
             <Info labelName="Email" inputType="email" inputName="email" value={formData.email} onChangeText={onChange}/>
             <Info labelName="Phone Number" inputName="phoneNumber" value={formData.phoneNumber} onChangeText={onChange}/>
-            <label htmlFor="description">Description</label>
-            <textarea name="description" id="description" placeholder='Describe yourself...' value={formData.description} onChange={onChange}></textarea>
-
+            <Info labelName="Address" inputName="address" value={formData.address} onChangeText={onChange}/>
             
             
             
