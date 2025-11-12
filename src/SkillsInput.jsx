@@ -10,8 +10,9 @@ function SkillsInput({labelName, inputName, placeholder, skills, setSkills, skil
             return
         }
         const skills = skillData[`${skillName}`]
+        
         skills.push(skillType)
-        setSkillData({...skillData, technicalSkills: skills})
+        setSkillData({...skillData, [skillName]: skills})
         setSkill("")
         setError("")
     }

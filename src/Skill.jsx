@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Info from "./Info"
 import SkillsInput from "./SkillsInput"
+import SkillList from "./SkillList"
 
 function Skill({skillData, setSkillData}) {
 
@@ -35,10 +36,15 @@ function Skill({skillData, setSkillData}) {
                 value={technicalSkills} onChange={(e) => setTechnicalSkills(e.target.value)} placeholder="Ruby, PHP, Node.JS..." onKeyDown={addSkillKeyboard}/>
                 <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addSkill}>+</button>
             </div> */}
+
             
+                <SkillList 
+                    skillData={skillData}
+                    skillName='technicalSkills'
+                    setSkillData={setSkillData}
+                />
 
-
-            <div className="technical-skills">
+            {/* <div className="technical-skills">
                 <ul>
                     {skillData.technicalSkills.map((skill, index) => (
                         <div key={index} className="flex justify-between items-center  mt-2">
@@ -50,7 +56,7 @@ function Skill({skillData, setSkillData}) {
                         
                 </ul>
                 
-            </div>
+            </div> */}
         </div>
     )
 }
