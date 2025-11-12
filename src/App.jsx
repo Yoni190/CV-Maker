@@ -37,11 +37,11 @@ function App() {
   })
 
   const [educationData, setEducationData] = useState({
-    universityName: "",
-    universityProgram: "",
-    city: "",
-    startDate: "",
-    graduationDate: "",
+    universityName: [],
+    universityProgram: [],
+    city: [],
+    startDate: [],
+    graduationDate: [],
     bullets: [""]
   })
 

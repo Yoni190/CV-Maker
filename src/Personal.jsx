@@ -16,13 +16,32 @@ function Personal({formData, setFormData}) {
         setFormData({...formData, [name]: value})
     }
 
+    const [educationList, setEducationList] = useState([1])
+
+
+
+    const addEducation = () => {
+        setEducationList(prev => [...prev, 1])
+    }
+
     return (
         <div style={container}>
-            <h2 style={{textAlign: 'left'}}>Personal Information</h2>
-            <Info labelName="Full Name" inputName="name" value={formData.name} onChangeText={onChange}/>
-            <Info labelName="Email" inputType="email" inputName="email" value={formData.email} onChangeText={onChange}/>
-            <Info labelName="Phone Number" inputName="phoneNumber" value={formData.phoneNumber} onChangeText={onChange}/>
-            <Info labelName="Address" inputName="address" value={formData.address} onChangeText={onChange}/>
+            <div className="flex justify-between mb-2">
+                <h2 style={{textAlign: 'left'}}>Personal Information</h2>
+                <button className='bg-green-600 px-4 py-1 text-white rounded-sm hover:bg-green-700 transition-all duration-300 hover:scale-105' onClick={addEducation}>Add</button>
+            </div>
+
+            {educationList.map((education, index) => (
+                <div className="flex flex-col border mb-5 p-2 rounded-md" key={index}>
+                    <Info labelName="Full Name" inputName="name" value={formData.name} onChangeText={onChange}/>
+                    <Info labelName="Email" inputType="email" inputName="email" value={formData.email} onChangeText={onChange}/>
+                    <Info labelName="Phone Number" inputName="phoneNumber" value={formData.phoneNumber} onChangeText={onChange}/>
+                    <Info labelName="Address" inputName="address" value={formData.address} onChangeText={onChange}/>
+                    
+                </div>
+                
+            ))}
+            
             
             
             
