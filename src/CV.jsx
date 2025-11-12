@@ -80,7 +80,7 @@ function CV ({formData, educationData, workData, skillData}) {
                 {skillData.technicalSkills.length > 0 && <hr />}
 
                 <div className="technical-container flex">
-                    {skillData.technicalSkills.length > 0 && <p class="font-bold mr-2">Technical Skills: </p>}
+                    {skillData.technicalSkills.length > 0 && <p className="font-bold mr-2">Technical Skills: </p>}
                     {skillData.technicalSkills.map((skill, index) => (
                         <span key={index}>{skill}, </span>
                     ))}
