@@ -55,7 +55,8 @@ function App() {
   })
 
   const [skillData, setSkillData] = useState({
-    technicalSkills: []
+    technicalSkills: [],
+    professionalSkills: []
   })
   
 

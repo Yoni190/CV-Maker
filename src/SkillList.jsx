@@ -1,5 +1,11 @@
+import { useEffect } from "react"
 
 function SkillList({skillData, skillName, setSkillData}) {
+
+    useEffect(() => {
+      console.log(skillData[`${skillName}`])
+    }, [])
+    
 
     const deleteSkill = (index) => {
         const skills = skillData[`${skillName}`]

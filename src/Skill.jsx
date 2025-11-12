@@ -6,6 +6,8 @@ import SkillList from "./SkillList"
 function Skill({skillData, setSkillData}) {
 
     const [technicalSkills, setTechnicalSkills] = useState("")
+    const [professionalSkills, setProfessionalSkills] = useState("")
+
 
     
 
@@ -18,11 +20,11 @@ function Skill({skillData, setSkillData}) {
     
     return (
         <div className="flex flex-col">
+            {/* Technical Skills */}
             <SkillsInput
                 labelName="Technical Skills"
-                inputName="technical"
+                inputName="technicalSkills"
                 placeholder="Ruby, Node.JS, PHP..."
-                skills={technicalSkills}
                 setSkills={setTechnicalSkills}
                 skillName='technicalSkills'
                 skillType={technicalSkills}
@@ -30,33 +32,31 @@ function Skill({skillData, setSkillData}) {
                 skillData={skillData}
                 setSkillData={setSkillData}
             />
-            {/* <label htmlFor="technical">Technical Skills</label>
-            <div className="technical-container flex">
-                <input className="p-2 border rounded-md flex-1" type="text" name="technical" id="technical" 
-                value={technicalSkills} onChange={(e) => setTechnicalSkills(e.target.value)} placeholder="Ruby, PHP, Node.JS..." onKeyDown={addSkillKeyboard}/>
-                <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addSkill}>+</button>
-            </div> */}
-
             
                 <SkillList 
                     skillData={skillData}
                     skillName='technicalSkills'
                     setSkillData={setSkillData}
                 />
-
-            {/* <div className="technical-skills">
-                <ul>
-                    {skillData.technicalSkills.map((skill, index) => (
-                        <div key={index} className="flex justify-between items-center  mt-2">
-                            <li className="text-left">{skill}</li>
-                            <button onClick={()=>deleteSkill(index)} className="text-white bg-red-500 p-2 rounded-md">Remove</button>
-                        </div>
-                        
-                    ))}
-                        
-                </ul>
                 
-            </div> */}
+                {/* Professional Skills */}
+                <SkillsInput
+                labelName="Professional Skills"
+                inputName="professionalSkills"
+                placeholder="Communication, Teamwork..."
+                setSkills={setProfessionalSkills}
+                skillName='professionalSkills'
+                skillType={professionalSkills}
+                setSkill={setProfessionalSkills}
+                skillData={skillData}
+                setSkillData={setSkillData}
+            />
+            
+                <SkillList 
+                    skillData={skillData}
+                    skillName='professionalSkills'
+                    setSkillData={setSkillData}
+                />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function SkillsInput({labelName, inputName, placeholder, skills, setSkills, skillName, skillType, setSkill, skillData, setSkillData}) {
+function SkillsInput({labelName, inputName, placeholder, setSkills, skillName, skillType, setSkill, skillData, setSkillData}) {
 
     const [error, setError] = useState("")
 
@@ -25,7 +25,7 @@ function SkillsInput({labelName, inputName, placeholder, skills, setSkills, skil
             }
             const skills = skillData[`${skillName}`]
             skills.push(skillType)
-            setSkillData({...skillData, technicalSkills: skills})
+            setSkillData({...skillData, [skillName]: skills})
             setSkill("")
             setError("")
         }
@@ -37,7 +37,7 @@ function SkillsInput({labelName, inputName, placeholder, skills, setSkills, skil
             <label htmlFor="technical">{labelName}</label>
             <div className="technical-container flex">
                 <input className="p-2 border rounded-md flex-1" type="text" name={inputName} id={inputName}
-                value={skills} onChange={(e) => setSkills(e.target.value)} placeholder={placeholder} onKeyDown={addSkillKeyboard}/>
+                value={skillType} onChange={(e) => setSkills(e.target.value)} placeholder={placeholder} onKeyDown={addSkillKeyboard}/>
                 <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addSkill}>+</button>
             </div>
 
