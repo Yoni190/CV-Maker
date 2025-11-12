@@ -7,6 +7,7 @@ import CV from './CV'
 import Education from './Education'
 import Work from './Work'
 
+
 function App() {
 
   const container = {
@@ -52,14 +53,33 @@ function App() {
     bullets: [""]
   })
 
+  const [selectedTab, setSelectedTab] = useState(0)
+
+
+
   return (
     <div>
       <h1>CV Maker</h1>
       <div style={container}>
         <div style={half}>
-          <Personal formData={formData} setFormData={setFormData} />
-          <Education educationData={educationData} setEducationData={setEducationData}/>
-          <Work workData={workData} setWorkData={setWorkData}/>
+          <div className="flex justify-center gap-5">
+            <button className={selectedTab === 0 ? 'bg-gray-800 text-white p-2 rounded-sm' : 'hover:bg-gray-200 p-2 rounded-sm'} onClick={() => setSelectedTab(0)}>Personal</button>
+            <button className={selectedTab === 1 ? 'bg-gray-800 text-white p-2 rounded-sm' : 'hover:bg-gray-200 p-2 rounded-sm'} onClick={() => setSelectedTab(1)}>Education</button>
+            <button className={selectedTab === 2 ? 'bg-gray-800 text-white p-2 rounded-sm' : 'hover:bg-gray-200 p-2 rounded-sm'} onClick={() => setSelectedTab(2)}>Work</button>
+          </div>
+
+          {selectedTab === 0 && (
+            <Personal formData={formData} setFormData={setFormData} />
+          )}
+
+          {selectedTab === 1 && (
+            <Education educationData={educationData} setEducationData={setEducationData}/>
+          )}
+
+          {selectedTab === 2 && ( 
+            <Work workData={workData} setWorkData={setWorkData}/>
+          )}
+
         </div>
         
         <div style={{...half, ...CVStyle}}>
