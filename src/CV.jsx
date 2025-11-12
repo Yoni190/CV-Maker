@@ -12,13 +12,13 @@ function CV ({formData, educationData, workData}) {
                 
             </div>
 
-            {formData.name && <hr style={{ marginTop: '-20px'}}/>}
+            {formData.name && <hr style={{ marginTop: '-10px'}}/>}
 
             
 
             <div className="work-experience">
                 {workData.companyName !== "" && <h2 style={{ textAlign: 'left' }}>Work Experience</h2>}
-                {workData.companyName !== "" && <hr style={{ marginTop: '-20px'}}/>}
+                {workData.companyName !== "" && <hr />}
                 <div className="work-container" style={{ display: 'flex', justifyContent: 'space-between'}}>
                     <p style={{ textAlign: 'left', fontWeight: 'bold'}}>{workData.companyName}</p>
                     <div className="work-date" style={{ display: 'flex', alignItems: 'center' }}>
@@ -28,14 +28,14 @@ function CV ({formData, educationData, workData}) {
                     </div>
                 </div>
                 
-                <div className="work-city" style={{ display: 'flex', justifyContent: 'space-between',  marginTop: '-10px'}}>
+                <div className="work-city mt-1" style={{ display: 'flex', justifyContent: 'space-between'}}>
                     <p style={{ textAlign: 'left', fontSize: 14, fontStyle: 'italic'}}>{workData.position}</p>
                     <p style={{ fontStyle: 'italic', fontSize: 14 }}>{workData.city}</p>
                 </div>
 
                  {workData.bullets[0] !== "" && workData.bullets.map((bullet, index) => (
-                    <ul style={{ marginTop: '-10px'}} key={index}>
-                        <li style={{ textAlign: 'left' }}>{bullet}</li>
+                    <ul className="mt-1 list-disc px-4" key={index}>
+                        <li className="text-left">{bullet}</li>
                     </ul>
                 ))} 
                 
@@ -45,7 +45,7 @@ function CV ({formData, educationData, workData}) {
 
             <div className="education">
                {educationData.universityName && <h2 style={{ textAlign: 'left' }}>Education</h2>}
-               {educationData.universityName && <hr style={{ marginTop: '-20px'}}/>}
+               {educationData.universityName && <hr />}
                <div className="uni-container" style={{ display: 'flex', justifyContent: 'space-between'}}>
                 <p style={{ fontWeight: 'bold'}}>{educationData.universityName}</p>
                 <div className="uni-date" style={{ display: 'flex', alignItems: 'center' }}>
@@ -57,13 +57,13 @@ function CV ({formData, educationData, workData}) {
                </div>
                 
                 <div className="uni-location" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '-10px' }}>
-                    <p style={{ fontStyle: 'italic', fontSize: 14, marginTop: 0}}>{educationData.universityProgram}</p>
+                    <p style={{ fontStyle: 'italic', fontSize: 14, marginTop: '10px'}}>{educationData.universityProgram}</p>
                     <p style={{ fontStyle: 'italic', fontSize: 14}}>{educationData.city}</p>
                 </div>
 
                 
                 {educationData.bullets[0] !== "" && educationData.bullets.map((bullet, index) => (
-                    <ul style={{ marginTop: '-10px'}} key={index}>
+                    <ul key={index} className="list-disc px-4">
                         <li style={{ textAlign: 'left' }}>{bullet}</li>
                     </ul>
                 ))}
