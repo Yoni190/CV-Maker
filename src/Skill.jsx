@@ -20,7 +20,7 @@ function Skill({skillData, setSkillData}) {
 
     const addSkillKeyboard = (event) => {
         if(event.key === 'Enter') {
-            if(technicalSkills === '') {
+            if(technicalSkills.trim() === '') {
                 setError('Please enter a skill')
                 return
             }
