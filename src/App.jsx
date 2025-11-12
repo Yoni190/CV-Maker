@@ -54,6 +54,11 @@ function App() {
     bullets: [""]
   })
 
+  const [skillData, setSkillData] = useState({
+    technicalSkills: []
+  })
+  
+
   const [selectedTab, setSelectedTab] = useState(0)
 
   const tabs = [
@@ -63,7 +68,7 @@ function App() {
     <Personal formData={formData} setFormData={setFormData} />,
     <Education educationData={educationData} setEducationData={setEducationData}/>,
     <Work workData={workData} setWorkData={setWorkData}/>,
-    <Skill />
+    <Skill skillData={skillData} setSkillData={setSkillData} />
   ]
 
 
@@ -85,7 +90,11 @@ function App() {
         </div>
         
         <div style={{...half, ...CVStyle}}>
-          <CV formData={formData} educationData={educationData} workData={workData}/>
+          <CV 
+          formData={formData} 
+          educationData={educationData} 
+          workData={workData}
+          skillData={skillData}/>
         </div>
       </div>
       

@@ -1,4 +1,4 @@
-function CV ({formData, educationData, workData}) {
+function CV ({formData, educationData, workData, skillData}) {
 
   
     return (
@@ -72,6 +72,20 @@ function CV ({formData, educationData, workData}) {
                         <li style={{ textAlign: 'left' }}>{bullet}</li>
                     </ul>
                 ))}
+                
+            </div>
+
+            <div className="skills">
+                {skillData.technicalSkills.length > 0 && <h2 style={{ textAlign: 'left' }}>Skills</h2>}
+                {skillData.technicalSkills.length > 0 && <hr />}
+
+                <div className="technical-container flex">
+                    {skillData.technicalSkills.length > 0 && <p class="font-bold mr-2">Technical Skills: </p>}
+                    {skillData.technicalSkills.map((skill, index) => (
+                        <span key={index}>{skill}, </span>
+                    ))}
+                </div>
+                
                 
             </div>
             
