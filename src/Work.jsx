@@ -44,6 +44,7 @@ function Work({ workData, setWorkData }) {
             <Info labelName="City" inputName="city" value={workData.city} onChangeText={onChange} />
             <Info labelName="Start Date" inputName="workStart" value={workData.workStart} onChangeText={onChange} />
             <Info labelName="End Date" inputName="workEnd" value={workData.workEnd} onChangeText={onChange} />
+            {/* Make the bullet input text area */}
             {workData.bullets.map((bullet, index) => (
                 <div key={index}>
                     <label htmlFor="bullet">Bullet {index+1}</label>

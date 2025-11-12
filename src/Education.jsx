@@ -43,6 +43,7 @@ function Education({educationData, setEducationData}) {
             <Info labelName="City" inputName="city" value={educationData.city} onChangeText={onChange} />
             <Info labelName="Start of University Program" inputName="startDate" value={educationData.startDate} onChangeText={onChange} />
             <Info labelName="Date of Graduation" inputName="graduationDate" value={educationData.graduationDate} onChangeText={onChange} />
+            {/* Make the bullet input textarea */}
             {educationData.bullets.map((bullet, index) => (
                 <div key={index}>
                     <label htmlFor="bullet">Bullet {index+1}</label>
