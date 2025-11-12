@@ -18,17 +18,17 @@ function Work({ workData, setWorkData }) {
     const addBullet = () => {
         const newArray = workData.bullets
         newArray[workData.bullets.length] = ""
-        setEducationData({...educationData, bullets: newArray})
+        setWorkData({...workData, bullets: newArray})
     }
 
     const deleteBullet = (index) => {
-        const newArray = educationData.bullets
+        const newArray = workData.bullets
         newArray.splice(index, 1)
-        setEducationData({...educationData, bullets: newArray})
+        setWorkData({...workData, bullets: newArray})
     }
 
     const handleBulletChange = (index, newValue) => {
-        setEducationData(prev => {
+        setWorkData(prev => {
             const updatedBullets = [...prev.bullets]; // copy array
             updatedBullets[index] = newValue; // update the specific bullet
             return { ...prev, bullets: updatedBullets }; // update state
