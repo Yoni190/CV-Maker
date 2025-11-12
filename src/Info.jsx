@@ -6,7 +6,7 @@ function Info({ labelName, inputType="text", inputName, value, onChangeText }) {
     return (
         <>
             <label htmlFor={inputName}>{labelName}</label>
-            <input style={inputStyle} type={inputType} name={inputName} id={inputName} value={value} onChange={onChangeText} placeholder={labelName} />
+            <input className="p-2 border rounded-md" type={inputType} name={inputName} id={inputName} value={value} onChange={onChangeText} placeholder={labelName} />
         </>
     )
 }
