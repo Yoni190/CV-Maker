@@ -1,36 +1,13 @@
 import { useState } from "react"
 import Info from "./Info"
+import SkillsInput from "./SkillsInput"
 
 function Skill({skillData, setSkillData}) {
 
     const [technicalSkills, setTechnicalSkills] = useState("")
-    const [error, setError] = useState("")
-    
-    const addSkill = () => {
-        if(technicalSkills === '') {
-            setError('Please enter a skill')
-            return
-        }
-        const skills = skillData.technicalSkills
-        skills.push(technicalSkills)
-        setSkillData({...skillData, technicalSkills: skills})
-        setTechnicalSkills("")
-        setError("")
-    }
 
-    const addSkillKeyboard = (event) => {
-        if(event.key === 'Enter') {
-            if(technicalSkills.trim() === '') {
-                setError('Please enter a skill')
-                return
-            }
-            const skills = skillData.technicalSkills
-            skills.push(technicalSkills)
-            setSkillData({...skillData, technicalSkills: skills})
-            setTechnicalSkills("")
-            setError("")
-        }
-    }
+    
+
 
     const deleteSkill = (index) => {
         const skills = skillData.technicalSkills
@@ -40,14 +17,26 @@ function Skill({skillData, setSkillData}) {
     
     return (
         <div className="flex flex-col">
-            <label htmlFor="technical">Technical Skills</label>
+            <SkillsInput
+                labelName="Technical Skills"
+                inputName="technical"
+                placeholder="Ruby, Node.JS, PHP..."
+                skills={technicalSkills}
+                setSkills={setTechnicalSkills}
+                skillName='technicalSkills'
+                skillType={technicalSkills}
+                setSkill={setTechnicalSkills}
+                skillData={skillData}
+                setSkillData={setSkillData}
+            />
+            {/* <label htmlFor="technical">Technical Skills</label>
             <div className="technical-container flex">
                 <input className="p-2 border rounded-md flex-1" type="text" name="technical" id="technical" 
                 value={technicalSkills} onChange={(e) => setTechnicalSkills(e.target.value)} placeholder="Ruby, PHP, Node.JS..." onKeyDown={addSkillKeyboard}/>
                 <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addSkill}>+</button>
-            </div>
+            </div> */}
             
-            {error !== '' && <p className="text-red-600 text-left">{error}</p>}
+
 
             <div className="technical-skills">
                 <ul>
