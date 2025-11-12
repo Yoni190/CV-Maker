@@ -57,6 +57,12 @@ function CV ({formData, educationData, workData}) {
                     <p style={{ textAlign: 'left', fontSize: 14, fontStyle: 'italic'}}>{workData.position}</p>
                     <p style={{ fontStyle: 'italic', fontSize: 14 }}>{workData.city}</p>
                 </div>
+
+                 {workData.bullets[0] !== "" && workData.bullets.map((bullet, index) => (
+                    <ul style={{ marginTop: '-10px'}} key={index}>
+                        <li style={{ textAlign: 'left' }}>{bullet}</li>
+                    </ul>
+                ))} 
                 
 
                 
