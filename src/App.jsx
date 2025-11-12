@@ -55,6 +55,15 @@ function App() {
 
   const [selectedTab, setSelectedTab] = useState(0)
 
+  const tabs = [
+    'Personal', 'Education', 'Work', 'Skills'
+  ]
+  const tabComponents = [
+    <Personal formData={formData} setFormData={setFormData} />,
+    <Education educationData={educationData} setEducationData={setEducationData}/>,
+    <Work workData={workData} setWorkData={setWorkData}/>
+  ]
+
 
 
   return (
@@ -63,22 +72,13 @@ function App() {
       <div style={container}>
         <div style={half}>
           <div className="flex justify-center gap-5">
-            <button className={selectedTab === 0 ? 'bg-gray-800 text-white p-2 rounded-sm' : 'hover:bg-gray-200 p-2 rounded-sm'} onClick={() => setSelectedTab(0)}>Personal</button>
-            <button className={selectedTab === 1 ? 'bg-gray-800 text-white p-2 rounded-sm' : 'hover:bg-gray-200 p-2 rounded-sm'} onClick={() => setSelectedTab(1)}>Education</button>
-            <button className={selectedTab === 2 ? 'bg-gray-800 text-white p-2 rounded-sm' : 'hover:bg-gray-200 p-2 rounded-sm'} onClick={() => setSelectedTab(2)}>Work</button>
+            {tabs.map((tab, index) => (
+                <button key={tab} className={selectedTab === index ? 'bg-gray-800 text-white p-2 rounded-sm' : 'hover:bg-gray-200 p-2 rounded-sm'} onClick={() => setSelectedTab(index)}>{tab}</button>
+            ))}
           </div>
 
-          {selectedTab === 0 && (
-            <Personal formData={formData} setFormData={setFormData} />
-          )}
+          {tabComponents[selectedTab]}
 
-          {selectedTab === 1 && (
-            <Education educationData={educationData} setEducationData={setEducationData}/>
-          )}
-
-          {selectedTab === 2 && ( 
-            <Work workData={workData} setWorkData={setWorkData}/>
-          )}
 
         </div>
         
