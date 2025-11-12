@@ -6,6 +6,7 @@ import Personal from './Personal'
 import CV from './CV'
 import Education from './Education'
 import Work from './Work'
+import Skill from './Skill'
 
 
 function App() {
@@ -61,7 +62,8 @@ function App() {
   const tabComponents = [
     <Personal formData={formData} setFormData={setFormData} />,
     <Education educationData={educationData} setEducationData={setEducationData}/>,
-    <Work workData={workData} setWorkData={setWorkData}/>
+    <Work workData={workData} setWorkData={setWorkData}/>,
+    <Skill />
   ]
 
 
