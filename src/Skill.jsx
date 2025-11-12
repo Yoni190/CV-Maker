@@ -9,6 +9,7 @@ function Skill({skillData, setSkillData}) {
         const skills = skillData.technicalSkills
         skills.push(technicalSkills)
         setSkillData({...skillData, technicalSkills: skills})
+        setTechnicalSkills("")
     }
 
     const addSkillKeyboard = (event) => {
@@ -16,6 +17,7 @@ function Skill({skillData, setSkillData}) {
             const skills = skillData.technicalSkills
             skills.push(technicalSkills)
             setSkillData({...skillData, technicalSkills: skills})
+            setTechnicalSkills("")
         }
     }
     
