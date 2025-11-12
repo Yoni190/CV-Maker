@@ -49,7 +49,7 @@ function Work({ workData, setWorkData }) {
                 <div key={index}>
                     <label htmlFor="bullet">Bullet {index+1}</label>
                     <div className="bullets" style={{ display: 'flex'}}>
-                        <input class="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet} style={{ flex: 1 }} onChange={(e) => handleBulletChange(index, e.target.value)}/>
+                        <textarea class="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet} style={{ flex: 1 }} onChange={(e) => handleBulletChange(index, e.target.value)}/>
                         <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addBullet}>+</button>
                         {workData.bullets.length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBullet(index)}>-</button>}
                     </div>
