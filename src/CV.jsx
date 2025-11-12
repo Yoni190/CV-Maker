@@ -79,7 +79,7 @@ function CV ({formData, educationData, workData, skillData}) {
                 {(skillData.technicalSkills.length > 0 || skillData.professionalSkills.length > 0) && <h2 style={{ textAlign: 'left' }}>Skills</h2>}
                 {(skillData.technicalSkills.length > 0 || skillData.professionalSkills.length > 0) && <hr />}
 
-                <div className="technical-container flex">
+                <div className="technical-container flex flex-wrap">
                     {skillData.technicalSkills.length > 0 && <p className="font-bold mr-2">Technical Skills: </p>}
                     {skillData.technicalSkills.map((skill, index) => (
                         <span key={index} className="mr-1">{skill} {index !== skillData.technicalSkills.length - 1 && ','} </span>
