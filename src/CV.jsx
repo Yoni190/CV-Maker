@@ -23,7 +23,9 @@ function CV ({formData, educationData, workData}) {
                     <p style={{ textAlign: 'left', fontWeight: 'bold'}}>{workData.companyName}</p>
                     <div className="work-date" style={{ display: 'flex', alignItems: 'center' }}>
                         <p style={{ fontWeight: 'bold' }}>{workData.workStart}</p>
-                        <span style={{ margin: '0 4px' }}>-</span>
+                        {workData.workStart != '' && (
+                            <span style={{ margin: '0 4px' }}>-</span>
+                        )}
                         <p style={{ fontWeight: 'bold' }}>{workData.workEnd}</p>
                     </div>
                 </div>
@@ -50,7 +52,10 @@ function CV ({formData, educationData, workData}) {
                 <p style={{ fontWeight: 'bold'}}>{educationData.universityName}</p>
                 <div className="uni-date" style={{ display: 'flex', alignItems: 'center' }}>
                     <p style={{ fontWeight: 'bold' }}>{educationData.startDate}</p>
-                    <span style={{ margin: '0 4px' }}>-</span>
+                    {educationData.startDate != '' && (
+                        <span style={{ margin: '0 4px' }}>-</span>
+                    )}
+                    
                     <p style={{ fontWeight: 'bold' }}>{educationData.graduationDate}</p>
                 </div>
                 
