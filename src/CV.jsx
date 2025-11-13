@@ -45,26 +45,27 @@ function CV ({formData, educationData, workData, skillData}) {
                 
             </div>
 
+            {educationData.universityName.at(-1) && <h2 style={{ textAlign: 'left' }}>Education</h2>}
+            {educationData.universityName.at(-1) && <hr />}
             {educationData.universityName.map((university, index) => (
                 <div className="education" key={index}>
-                {educationData.universityName && <h2 style={{ textAlign: 'left' }}>Education</h2>}
-                {educationData.universityName && <hr />}
+                
                 <div className="uni-container" style={{ display: 'flex', justifyContent: 'space-between'}}>
                     <p style={{ fontWeight: 'bold'}}>{university}</p>
                     <div className="uni-date" style={{ display: 'flex', alignItems: 'center' }}>
-                        <p style={{ fontWeight: 'bold' }}>{educationData.startDate}</p>
+                        <p style={{ fontWeight: 'bold' }}>{educationData.startDate[index]}</p>
                         {educationData.startDate != '' && (
                             <span style={{ margin: '0 4px' }}>-</span>
                         )}
                         
-                        <p style={{ fontWeight: 'bold' }}>{educationData.graduationDate}</p>
+                        <p style={{ fontWeight: 'bold' }}>{educationData.endDate[index]}</p>
                     </div>
                     
                 </div>
                     
                     <div className="uni-location" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '-10px' }}>
-                        <p style={{ fontStyle: 'italic', fontSize: 14, marginTop: '10px'}}>{educationData.universityProgram}</p>
-                        <p style={{ fontStyle: 'italic', fontSize: 14}}>{educationData.city}</p>
+                        <p style={{ fontStyle: 'italic', fontSize: 14, marginTop: '10px'}}>{educationData.universityProgram[index]}</p>
+                        <p style={{ fontStyle: 'italic', fontSize: 14}}>{educationData.city[index]}</p>
                     </div>
 
                     

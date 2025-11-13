@@ -14,11 +14,10 @@ function Education({educationData, setEducationData}) {
         setEducationData({...educationData, [name]: value})
     }   
 
-    const newOnChange = (event, index) => {
-        const names = educationData.universityName
+    const newOnChange = (event, index, type) => {
+        const names = educationData[type]
         names[index] = event.target.value
-        console.log(educationData.universityName)
-        setEducationData({...educationData, universityName: names})
+        setEducationData({...educationData, [type]: names})
     }
 
     const container = {
@@ -53,12 +52,25 @@ function Education({educationData, setEducationData}) {
         const [educationList, setEducationList] = useState([1])
 
 
-        const addEducation = () => {
-            const names = educationData.universityName
-            names.push("")
-            setEducationData({...educationData, universityName: names})
-            setEducationList(prev => [...prev, 1])
-        }
+      const addEducation = () => {
+        
+        const names = ["", ...educationData.universityName];
+        const programs = ["", ...educationData.universityProgram];
+        const cities = ["", ...educationData.city];
+        const startDates = ["", ...educationData.startDate];
+        const endDates = ["", ...educationData.endDate];
+
+        setEducationData({
+            ...educationData,
+            universityName: names,
+            universityProgram: programs,
+            city: cities,
+            startDate: startDates,
+            endDate: endDates,
+        });
+        setEducationList(prev => [1, ...prev]);
+        };
+
     return (
         <div style={container}>
             <h2 style={{ textAlign: 'left' }}>Education</h2>
@@ -69,11 +81,11 @@ function Education({educationData, setEducationData}) {
 
             {educationList.map((education, index) => (
                 <div className="flex flex-col border mb-5 p-2 rounded-md" key={index}>
-                    <Info labelName="University Name" inputName="universityName" value={educationData.universityName[index]} onChangeText={(e) => newOnChange(e, index)}/>
-                    <Info labelName="University Program" inputName="universityProgram" value={educationData.universityProgram} onChangeText={onChange} />
-                    <Info labelName="City" inputName="city" value={educationData.city} onChangeText={onChange} />
-                    <Info labelName="Start of University Program" inputName="startDate" value={educationData.startDate} onChangeText={onChange} />
-                    <Info labelName="Date of Graduation" inputName="graduationDate" value={educationData.graduationDate} onChangeText={onChange} />
+                    <Info labelName="University Name" inputName="universityName" value={educationData.universityName[index]} onChangeText={(e) => newOnChange(e, index, 'universityName')}/>
+                    <Info labelName="University Program" inputName="universityProgram" value={educationData.universityProgram[index]} onChangeText={(e) => newOnChange(e, index, 'universityProgram')} />
+                    <Info labelName="City" inputName="city" value={educationData.city[index]} onChangeText={(e) => newOnChange(e, index, 'city')} />
+                    <Info labelName="Start of University Program" inputName="startDate" value={educationData.startDate[index]} onChangeText={(e) => newOnChange(e, index, 'startDate')} />
+                    <Info labelName="Date of Graduation" inputName="endDate" value={educationData.endDate[index]} onChangeText={(e) => newOnChange(e, index, 'endDate')} />
                     {/* Make the bullet input textarea */}
                     {/* Make education and work data array */}
                     {educationData.bullets.map((bullet, index) => (
