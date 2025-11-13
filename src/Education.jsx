@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react"
 import Info from "./Info"
 
-function Education({educationData, setEducationData}) {
+function Education({educationData, setEducationData, educationList, setEducationList}) {
 
-    useEffect(() => {
-      
-        console.log(educationData.universityName[0])
-    }, [])
+    
     
 
     const onChange = (event) => {
@@ -49,7 +46,7 @@ function Education({educationData, setEducationData}) {
         });
         };
 
-        const [educationList, setEducationList] = useState([1])
+        // const [educationList, setEducationList] = useState([1])
 
 
       const addEducation = () => {

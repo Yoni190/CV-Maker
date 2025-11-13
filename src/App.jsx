@@ -11,6 +11,8 @@ import Skill from './Skill'
 
 function App() {
 
+  const [educationList, setEducationList] = useState([1])
+
   const container = {
     display: 'flex',
     gap: '15px',
@@ -67,7 +69,7 @@ function App() {
   ]
   const tabComponents = [
     <Personal formData={formData} setFormData={setFormData} />,
-    <Education educationData={educationData} setEducationData={setEducationData}/>,
+    <Education educationData={educationData} setEducationData={setEducationData} educationList={educationList} setEducationList={setEducationList}/>,
     <Work workData={workData} setWorkData={setWorkData}/>,
     <Skill skillData={skillData} setSkillData={setSkillData} />
   ]
