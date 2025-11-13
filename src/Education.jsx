@@ -1,12 +1,25 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Info from "./Info"
 
 function Education({educationData, setEducationData}) {
+
+    useEffect(() => {
+      
+        console.log(educationData.universityName[0])
+    }, [])
+    
 
     const onChange = (event) => {
         const {name, value} = event.target
         setEducationData({...educationData, [name]: value})
     }   
+
+    const newOnChange = (event, index) => {
+        const names = educationData.universityName
+        names[index] = event.target.value
+        console.log(educationData.universityName)
+        setEducationData({...educationData, universityName: names})
+    }
 
     const container = {
         display: 'flex',
@@ -41,6 +54,9 @@ function Education({educationData, setEducationData}) {
 
 
         const addEducation = () => {
+            const names = educationData.universityName
+            names.push("")
+            setEducationData({...educationData, universityName: names})
             setEducationList(prev => [...prev, 1])
         }
     return (
@@ -53,7 +69,7 @@ function Education({educationData, setEducationData}) {
 
             {educationList.map((education, index) => (
                 <div className="flex flex-col border mb-5 p-2 rounded-md" key={index}>
-                    <Info labelName="University Name" inputName="universityName" value={educationData.universityName} onChangeText={onChange}/>
+                    <Info labelName="University Name" inputName="universityName" value={educationData.universityName[index]} onChangeText={(e) => newOnChange(e, index)}/>
                     <Info labelName="University Program" inputName="universityProgram" value={educationData.universityProgram} onChangeText={onChange} />
                     <Info labelName="City" inputName="city" value={educationData.city} onChangeText={onChange} />
                     <Info labelName="Start of University Program" inputName="startDate" value={educationData.startDate} onChangeText={onChange} />
