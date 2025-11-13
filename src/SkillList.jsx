@@ -15,11 +15,11 @@ function SkillList({skillData, skillName, setSkillData}) {
 
     return (
         <div className="technical-skills">
-            <ul>
+            <ul className="flex flex-wrap gap-4">
                 {skillData[`${skillName}`].map((skill, index) => (
-                    <div key={index} className="flex justify-between items-center  mt-2">
+                    <div key={index} className="flex justify-between items-center mt-2 w-[48%]">
                         <li className="text-left">{skill}</li>
-                        <button onClick={()=>deleteSkill(index)} className="text-white bg-red-500 p-2 rounded-md">Remove</button>
+                        <button onClick={()=>deleteSkill(index)} className="text-white bg-red-500 p-2 rounded-md cursor-pointer">Remove</button>
                     </div>
                     
                 ))}
