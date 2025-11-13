@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Info from "./Info"
 
 function Education({educationData, setEducationData}) {
@@ -35,27 +36,44 @@ function Education({educationData, setEducationData}) {
             return { ...prev, bullets: updatedBullets }; // update state
         });
         };
+
+        const [educationList, setEducationList] = useState([1])
+
+
+        const addEducation = () => {
+            setEducationList(prev => [...prev, 1])
+        }
     return (
         <div style={container}>
             <h2 style={{ textAlign: 'left' }}>Education</h2>
-            <Info labelName="University Name" inputName="universityName" value={educationData.universityName} onChangeText={onChange}/>
-            <Info labelName="University Program" inputName="universityProgram" value={educationData.universityProgram} onChangeText={onChange} />
-            <Info labelName="City" inputName="city" value={educationData.city} onChangeText={onChange} />
-            <Info labelName="Start of University Program" inputName="startDate" value={educationData.startDate} onChangeText={onChange} />
-            <Info labelName="Date of Graduation" inputName="graduationDate" value={educationData.graduationDate} onChangeText={onChange} />
-            {/* Make the bullet input textarea */}
-            {/* Make education and work data array */}
-            {educationData.bullets.map((bullet, index) => (
-                <div key={index}>
-                    <label htmlFor="bullet">Bullet {index+1}</label>
-                    <div className="bullets" style={{ display: 'flex'}}>
-                        <textarea className="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet} style={{ flex: 1 }} onChange={(e) => handleBulletChange(index, e.target.value)}/>
-                        <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addBullet}>+</button>
-                        {educationData.bullets.length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBullet(index)}>-</button>}
-                    </div>
+            <div className="flex justify-between mb-2">
+                <button className='bg-green-600 px-4 py-1 text-white rounded-sm hover:bg-green-700 transition-all duration-300 hover:scale-105' onClick={addEducation}>Add</button>
+            </div>
+
+
+            {educationList.map((education, index) => (
+                <div className="flex flex-col border mb-5 p-2 rounded-md" key={index}>
+                    <Info labelName="University Name" inputName="universityName" value={educationData.universityName} onChangeText={onChange}/>
+                    <Info labelName="University Program" inputName="universityProgram" value={educationData.universityProgram} onChangeText={onChange} />
+                    <Info labelName="City" inputName="city" value={educationData.city} onChangeText={onChange} />
+                    <Info labelName="Start of University Program" inputName="startDate" value={educationData.startDate} onChangeText={onChange} />
+                    <Info labelName="Date of Graduation" inputName="graduationDate" value={educationData.graduationDate} onChangeText={onChange} />
+                    {/* Make the bullet input textarea */}
+                    {/* Make education and work data array */}
+                    {educationData.bullets.map((bullet, index) => (
+                        <div key={index}>
+                            <label htmlFor="bullet">Bullet {index+1}</label>
+                            <div className="bullets" style={{ display: 'flex'}}>
+                                <textarea className="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet} style={{ flex: 1 }} onChange={(e) => handleBulletChange(index, e.target.value)}/>
+                                <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addBullet}>+</button>
+                                {educationData.bullets.length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBullet(index)}>-</button>}
+                            </div>
+                        </div>
+                    
+                    
+                ))}
                 </div>
-                
-            ))}
+                ))}
             
                 
         </div>
