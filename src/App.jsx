@@ -44,7 +44,7 @@ function App() {
     city: [""],
     startDate: [""],
     endDate: [""],
-    bullets: [""],
+    bullets: [[""]],
   })
 
   const [workData, setWorkData] = useState({

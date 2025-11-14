@@ -46,6 +46,16 @@ function Education({educationData, setEducationData, educationList, setEducation
         });
         };
 
+
+    const newBullet = (index, bulletIndex, newValue) => {
+        const updatedbullets = educationData.bullets
+        console.log(`Index: ${index}, Bullet Index: ${bulletIndex}`)
+        console.log(`New Value: ${newValue}`)
+        console.log(updatedbullets[index])
+        updatedbullets[index][bulletIndex] = newValue
+        setEducationData({...educationData, bullets: updatedbullets})
+    }
+
         // const [educationList, setEducationList] = useState([1])
 
 
@@ -85,13 +95,13 @@ function Education({educationData, setEducationData, educationList, setEducation
                     <Info labelName="Date of Graduation" inputName="endDate" value={educationData.endDate[index]} onChangeText={(e) => newOnChange(e, index, 'endDate')} />
                     {/* Make the bullet input textarea */}
                     {/* Make education and work data array */}
-                    {educationData.bullets.map((bullet, index) => (
-                        <div key={index}>
-                            <label htmlFor="bullet">Bullet {index+1}</label>
+                    {educationData.bullets.map((bullet, bulletIndex) => (
+                        <div key={bulletIndex}>
+                            <label htmlFor="bullet">Bullet {bulletIndex+1}</label>
                             <div className="bullets" style={{ display: 'flex'}}>
-                                <textarea className="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet} style={{ flex: 1 }} onChange={(e) => handleBulletChange(index, e.target.value)}/>
+                                <textarea className="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet[index]} style={{ flex: 1 }} onChange={(e) => newBullet(index, bulletIndex, e.target.value)}/>
                                 <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addBullet}>+</button>
-                                {educationData.bullets.length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBullet(index)}>-</button>}
+                                {educationData.bullets.length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBullet(bulletIndex)}>-</button>}
                             </div>
                         </div>
                     
