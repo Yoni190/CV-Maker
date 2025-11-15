@@ -32,6 +32,14 @@ function Education({educationData, setEducationData, educationList, setEducation
         setEducationData({...educationData, bullets: newArray})
     }
 
+    const addBulletNew = (index) => {
+        const newArray = educationData.bullets
+        console.log(`Before Add: ${newArray}`)
+        newArray[index][educationData.bullets[index].length] = ""
+         console.log(`After Add: ${newArray}`)
+        setEducationData({...educationData, bullets: newArray})
+    }
+
     const deleteBullet = (index) => {
         const newArray = educationData.bullets
         newArray.splice(index, 1)
@@ -67,6 +75,10 @@ function Education({educationData, setEducationData, educationList, setEducation
         const startDates = ["", ...educationData.startDate];
         const endDates = ["", ...educationData.endDate];
 
+        const bullets = [[""], ...educationData.bullets]
+
+        console.log(bullets)
+
         setEducationData({
             ...educationData,
             universityName: names,
@@ -74,6 +86,7 @@ function Education({educationData, setEducationData, educationList, setEducation
             city: cities,
             startDate: startDates,
             endDate: endDates,
+            bullets: bullets
         });
         setEducationList(prev => [1, ...prev]);
         };
@@ -95,12 +108,12 @@ function Education({educationData, setEducationData, educationList, setEducation
                     <Info labelName="Date of Graduation" inputName="endDate" value={educationData.endDate[index]} onChangeText={(e) => newOnChange(e, index, 'endDate')} />
                     {/* Make the bullet input textarea */}
                     {/* Make education and work data array */}
-                    {educationData.bullets.map((bullet, bulletIndex) => (
+                    {educationData.bullets[index].map((bullet, bulletIndex) => (
                         <div key={bulletIndex}>
                             <label htmlFor="bullet">Bullet {bulletIndex+1}</label>
                             <div className="bullets" style={{ display: 'flex'}}>
-                                <textarea className="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet[index]} style={{ flex: 1 }} onChange={(e) => newBullet(index, bulletIndex, e.target.value)}/>
-                                <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addBullet}>+</button>
+                                <textarea className="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet} style={{ flex: 1 }} onChange={(e) => newBullet(index, bulletIndex, e.target.value)}/>
+                                <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => addBulletNew(index)}>+</button>
                                 {educationData.bullets.length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBullet(bulletIndex)}>-</button>}
                             </div>
                         </div>
