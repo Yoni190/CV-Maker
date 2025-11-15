@@ -7,6 +7,7 @@ function CV ({formData, educationData, workData, skillData}) {
     const cvRef = useRef()
 
 
+
     const downloadPDF = async () => {
         const element = cvRef.current
 
@@ -25,7 +26,9 @@ function CV ({formData, educationData, workData, skillData}) {
         const ratio = imgProps.height / imgProps.width
 
         pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfWidth * ratio)
-        pdf.save("cv.pdf")
+
+        const fullName = formData.name.replace(" ", "_")
+        pdf.save(`${fullName}.pdf`)
 
     }
   
