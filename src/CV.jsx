@@ -14,36 +14,38 @@ function CV ({formData, educationData, workData, skillData}) {
 
             {formData.name && <hr style={{ marginTop: '-10px'}}/>}
 
-            
+            {workData.companyName.at(-1) && <h2 style={{ textAlign: 'left' }}>Work Experience</h2>}
+            {workData.companyName.at(-1) && <hr />}
 
-            <div className="work-experience">
-                {workData.companyName !== "" && <h2 style={{ textAlign: 'left' }}>Work Experience</h2>}
-                {workData.companyName !== "" && <hr />}
-                <div className="work-container" style={{ display: 'flex', justifyContent: 'space-between'}}>
-                    <p style={{ textAlign: 'left', fontWeight: 'bold'}}>{workData.companyName}</p>
-                    <div className="work-date" style={{ display: 'flex', alignItems: 'center' }}>
-                        <p style={{ fontWeight: 'bold' }}>{workData.workStart}</p>
-                        {workData.workStart != '' && (
-                            <span style={{ margin: '0 4px' }}>-</span>
-                        )}
-                        <p style={{ fontWeight: 'bold' }}>{workData.workEnd}</p>
+            {workData.companyName.map((work, index) => (
+                <div className="work-experience" key={index}>
+                    <div className="work-container" style={{ display: 'flex', justifyContent: 'space-between'}}>
+                        <p style={{ textAlign: 'left', fontWeight: 'bold'}}>{work}</p>
+                        <div className="work-date" style={{ display: 'flex', alignItems: 'center' }}>
+                            <p style={{ fontWeight: 'bold' }}>{workData.workStart[index]}</p>
+                            {workData.workStart[index] != '' && (
+                                <span style={{ margin: '0 4px' }}>-</span>
+                            )}
+                            <p style={{ fontWeight: 'bold' }}>{workData.workEnd[index]}</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div className="work-city mt-1" style={{ display: 'flex', justifyContent: 'space-between'}}>
-                    <p style={{ textAlign: 'left', fontSize: 14, fontStyle: 'italic'}}>{workData.position}</p>
-                    <p style={{ fontStyle: 'italic', fontSize: 14 }}>{workData.city}</p>
-                </div>
+                    
+                    <div className="work-city mt-1" style={{ display: 'flex', justifyContent: 'space-between'}}>
+                        <p style={{ textAlign: 'left', fontSize: 14, fontStyle: 'italic'}}>{workData.position[index]}</p>
+                        <p style={{ fontStyle: 'italic', fontSize: 14 }}>{workData.city[index]}</p>
+                    </div>
 
-                 {workData.bullets[0] !== "" && workData.bullets.map((bullet, index) => (
-                    <ul className="mt-1 list-disc px-4" key={index}>
-                        <li className="text-left">{bullet}</li>
-                    </ul>
-                ))} 
-                
+                    {workData.bullets[index][0] !== "" && workData.bullets[index].map((bullet, bulletIndex) => (
+                        <ul className="mt-1 list-disc px-4" key={bulletIndex}>
+                            <li className="text-left">{bullet}</li>
+                        </ul>
+                    ))} 
+                    
 
-                
-            </div>
+                    
+                </div>
+            ))}
+            
 
             {educationData.universityName.at(-1) && <h2 style={{ textAlign: 'left' }}>Education</h2>}
             {educationData.universityName.at(-1) && <hr />}
