@@ -98,6 +98,22 @@ function Education({educationData, setEducationData, educationList, setEducation
         setEducationList(prev => [1, ...prev]);
         };
 
+       const removeEducation = (index) => {
+            // Deep copy educationData
+            const newEducationData = {};
+
+            for (const key in educationData) {
+                newEducationData[key] = educationData[key].filter((_, i) => i !== index);
+            }
+
+            // Copy educationList also
+            const newEducationList = educationList.filter((_, i) => i !== index);
+
+            setEducationData(newEducationData);
+            setEducationList(newEducationList);
+        };
+
+
     return (
         <div style={container}>
             <div className="flex justify-between mb-2">
@@ -127,6 +143,7 @@ function Education({educationData, setEducationData, educationList, setEducation
                     
                     
                 ))}
+                    {educationList.length > 1 && <button className="bg-red-500 text-white mt-2 rounded-md py-3 hover:bg-red-700 transition-all duration-300 hover:scale-102" onClick={() => removeEducation(index)}>Remove</button> }
                 </div>
                 ))}
             

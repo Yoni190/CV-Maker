@@ -89,6 +89,21 @@ function Work({ workData, setWorkData, workList, setWorkList}) {
             setWorkData({...workData, bullets: newArray})
         }
 
+        const removeWork = (index) => {
+            // Deep copy educationData
+            const newWorkData = {};
+
+            for (const key in workData) {
+                newWorkData[key] = workData[key].filter((_, i) => i !== index);
+            }
+
+            // Copy educationList also
+            const newWorkList = workList.filter((_, i) => i !== index);
+
+            setWorkData(newWorkData);
+            setWorkList(newWorkList);
+        };
+
     
     return (
         <div style={container}>
@@ -115,7 +130,9 @@ function Work({ workData, setWorkData, workList, setWorkList}) {
                         </div>
                         
                     ))}
+                    {workList.length > 1 && <button className="bg-red-500 text-white mt-2 rounded-md py-3 hover:bg-red-700 transition-all duration-300 hover:scale-102" onClick={() => removeWork(index)}>Remove</button> }
                 </div>
+                
             ))}
             
         </div>
