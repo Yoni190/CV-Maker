@@ -21,9 +21,7 @@ function Education({educationData, setEducationData, educationList, setEducation
 
     const addBulletNew = (index) => {
         const newArray = educationData.bullets
-        console.log(`Before Add: ${newArray}`)
         newArray[index][educationData.bullets[index].length] = ""
-         console.log(`After Add: ${newArray}`)
         setEducationData({...educationData, bullets: newArray})
     }
 
@@ -31,16 +29,12 @@ function Education({educationData, setEducationData, educationList, setEducation
     const deleteBulletNew = (index, bulletIndex) => {
         const newArray = educationData.bullets
         newArray[index].splice(bulletIndex, 1)
-        console.log(newArray)
         setEducationData({...educationData, bullets: newArray})
     }
 
 
     const newBullet = (index, bulletIndex, newValue) => {
         const updatedbullets = educationData.bullets
-        console.log(`Index: ${index}, Bullet Index: ${bulletIndex}`)
-        console.log(`New Value: ${newValue}`)
-        console.log(updatedbullets[index])
         updatedbullets[index][bulletIndex] = newValue
         setEducationData({...educationData, bullets: updatedbullets})
     }
@@ -58,7 +52,6 @@ function Education({educationData, setEducationData, educationList, setEducation
 
         const bullets = [[""], ...educationData.bullets]
 
-        console.log(bullets)
 
         setEducationData({
             ...educationData,

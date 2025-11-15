@@ -47,25 +47,19 @@ function Work({ workData, setWorkData, workList, setWorkList}) {
 
     const newBullet = (index, bulletIndex, newValue) => {
         const updatedbullets = workData.bullets
-        console.log(`Index: ${index}, Bullet Index: ${bulletIndex}`)
-        console.log(`New Value: ${newValue}`)
-        console.log(updatedbullets[index])
         updatedbullets[index][bulletIndex] = newValue
         setWorkData({...workData, bullets: updatedbullets})
     }
 
     const addBulletNew = (index) => {
         const newArray = workData.bullets
-        console.log(`Before Add: ${newArray}`)
         newArray[index][workData.bullets[index].length] = ""
-        console.log(`After Add: ${newArray}`)
         setWorkData({...workData, bullets: newArray})
     }
 
     const deleteBulletNew = (index, bulletIndex) => {
         const newArray = workData.bullets
         newArray[index].splice(bulletIndex, 1)
-        console.log(newArray)
         setWorkData({...workData, bullets: newArray})
     }
 
