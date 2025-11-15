@@ -46,6 +46,13 @@ function Education({educationData, setEducationData, educationList, setEducation
         setEducationData({...educationData, bullets: newArray})
     }
 
+    const deleteBulletNew = (index, bulletIndex) => {
+        const newArray = educationData.bullets
+        newArray[index].splice(bulletIndex, 1)
+        console.log(newArray)
+        setEducationData({...educationData, bullets: newArray})
+    }
+
     const handleBulletChange = (index, newValue) => {
         setEducationData(prev => {
             const updatedBullets = [...prev.bullets]; // copy array
@@ -114,7 +121,7 @@ function Education({educationData, setEducationData, educationList, setEducation
                             <div className="bullets" style={{ display: 'flex'}}>
                                 <textarea className="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet} style={{ flex: 1 }} onChange={(e) => newBullet(index, bulletIndex, e.target.value)}/>
                                 <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => addBulletNew(index)}>+</button>
-                                {educationData.bullets.length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBullet(bulletIndex)}>-</button>}
+                                {educationData.bullets[index].length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBulletNew(index, bulletIndex)}>-</button>}
                             </div>
                         </div>
                     
