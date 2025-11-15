@@ -36,7 +36,7 @@ function CV ({formData, educationData, workData, skillData}) {
         <div>
             <div className="flex justify-between items-center">
                 <h1>CV</h1>
-                <button className="bg-green-600 text-white p-2 rounded-sm" onClick={downloadPDF}>Download</button>
+                <button className="bg-green-600 text-white p-2 rounded-sm hover:bg-green-700 transition-all duration-300 hover:scale-115" onClick={downloadPDF}>Download</button>
             </div>
 
             <div ref={cvRef} className="p-3">
