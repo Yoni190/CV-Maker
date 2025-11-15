@@ -69,8 +69,8 @@ function CV ({formData, educationData, workData, skillData}) {
                     </div>
 
                     
-                    {educationData.bullets[0] !== "" && educationData.bullets.map((bullet, index) => (
-                        <ul key={index} className="list-disc px-4">
+                    {educationData.bullets[index][0] !== "" && educationData.bullets[index].map((bullet, bulletIndex) => (
+                        <ul key={bulletIndex} className="list-disc px-4">
                             <li style={{ textAlign: 'left' }}>{bullet}</li>
                         </ul>
                     ))}
