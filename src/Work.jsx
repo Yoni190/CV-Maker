@@ -10,10 +10,6 @@ function Work({ workData, setWorkData, workList, setWorkList}) {
         marginTop: '30px'
     }
 
-    const onChange = (event) => {
-        const { name, value } = event.target
-        setWorkData({...workData, [name]: value})
-    }
 
     const newOnChange = (event, index, type) => {
         const names = workData[type]
@@ -21,88 +17,72 @@ function Work({ workData, setWorkData, workList, setWorkList}) {
         setWorkData({...workData, [type]: names})
     }
 
-    const addBullet = () => {
+   
+
+
+
+    const addWork = () => {
+    
+    const names = ["", ...workData.companyName];
+    const positions = ["", ...workData.position];
+    const cities = ["", ...workData.city];
+    const startDates = ["", ...workData.workStart];
+    const endDates = ["", ...workData.workEnd];
+
+    const bullets = [[""], ...workData.bullets]
+
+
+
+    setWorkData({
+        ...workData,
+        companyName: names,
+        position: positions,
+        city: cities,
+        workStart: startDates,
+        workEnd: endDates,
+        bullets: bullets
+    });
+    setWorkList(prev => [1, ...prev]);
+    };
+
+    const newBullet = (index, bulletIndex, newValue) => {
+        const updatedbullets = workData.bullets
+        console.log(`Index: ${index}, Bullet Index: ${bulletIndex}`)
+        console.log(`New Value: ${newValue}`)
+        console.log(updatedbullets[index])
+        updatedbullets[index][bulletIndex] = newValue
+        setWorkData({...workData, bullets: updatedbullets})
+    }
+
+    const addBulletNew = (index) => {
         const newArray = workData.bullets
-        newArray[workData.bullets.length] = ""
+        console.log(`Before Add: ${newArray}`)
+        newArray[index][workData.bullets[index].length] = ""
+        console.log(`After Add: ${newArray}`)
         setWorkData({...workData, bullets: newArray})
     }
 
-    const deleteBullet = (index) => {
+    const deleteBulletNew = (index, bulletIndex) => {
         const newArray = workData.bullets
-        newArray.splice(index, 1)
+        newArray[index].splice(bulletIndex, 1)
+        console.log(newArray)
         setWorkData({...workData, bullets: newArray})
     }
 
-    const handleBulletChange = (index, newValue) => {
-        setWorkData(prev => {
-            const updatedBullets = [...prev.bullets]; // copy array
-            updatedBullets[index] = newValue; // update the specific bullet
-            return { ...prev, bullets: updatedBullets }; // update state
-        });
-        };
+    const removeWork = (index) => {
+        // Deep copy educationData
+        const newWorkData = {};
 
-        const addWork = () => {
-        
-        const names = ["", ...workData.companyName];
-        const positions = ["", ...workData.position];
-        const cities = ["", ...workData.city];
-        const startDates = ["", ...workData.workStart];
-        const endDates = ["", ...workData.workEnd];
-
-        const bullets = [[""], ...workData.bullets]
-
-
-
-        setWorkData({
-            ...workData,
-            companyName: names,
-            position: positions,
-            city: cities,
-            workStart: startDates,
-            workEnd: endDates,
-            bullets: bullets
-        });
-        setWorkList(prev => [1, ...prev]);
-        };
-
-        const newBullet = (index, bulletIndex, newValue) => {
-            const updatedbullets = workData.bullets
-            console.log(`Index: ${index}, Bullet Index: ${bulletIndex}`)
-            console.log(`New Value: ${newValue}`)
-            console.log(updatedbullets[index])
-            updatedbullets[index][bulletIndex] = newValue
-            setWorkData({...workData, bullets: updatedbullets})
+        for (const key in workData) {
+            newWorkData[key] = workData[key].filter((_, i) => i !== index);
         }
 
-        const addBulletNew = (index) => {
-            const newArray = workData.bullets
-            console.log(`Before Add: ${newArray}`)
-            newArray[index][workData.bullets[index].length] = ""
-            console.log(`After Add: ${newArray}`)
-            setWorkData({...workData, bullets: newArray})
-        }
+        // Copy educationList also
+        const newWorkList = workList.filter((_, i) => i !== index);
 
-        const deleteBulletNew = (index, bulletIndex) => {
-            const newArray = workData.bullets
-            newArray[index].splice(bulletIndex, 1)
-            console.log(newArray)
-            setWorkData({...workData, bullets: newArray})
-        }
-
-        const removeWork = (index) => {
-            // Deep copy educationData
-            const newWorkData = {};
-
-            for (const key in workData) {
-                newWorkData[key] = workData[key].filter((_, i) => i !== index);
-            }
-
-            // Copy educationList also
-            const newWorkList = workList.filter((_, i) => i !== index);
-
-            setWorkData(newWorkData);
-            setWorkList(newWorkList);
-        };
+        setWorkData(newWorkData);
+        setWorkList(newWorkList);
+    };
 
     
     return (

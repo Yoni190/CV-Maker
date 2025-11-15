@@ -2,14 +2,7 @@ import { useEffect, useState } from "react"
 import Info from "./Info"
 
 function Education({educationData, setEducationData, educationList, setEducationList}) {
-
-    
-    
-
-    const onChange = (event) => {
-        const {name, value} = event.target
-        setEducationData({...educationData, [name]: value})
-    }   
+ 
 
     const newOnChange = (event, index, type) => {
         const names = educationData[type]
@@ -26,12 +19,6 @@ function Education({educationData, setEducationData, educationList, setEducation
         marginTop: '30px'
     }
 
-    const addBullet = () => {
-        const newArray = educationData.bullets
-        newArray[educationData.bullets.length] = ""
-        setEducationData({...educationData, bullets: newArray})
-    }
-
     const addBulletNew = (index) => {
         const newArray = educationData.bullets
         console.log(`Before Add: ${newArray}`)
@@ -40,11 +27,6 @@ function Education({educationData, setEducationData, educationList, setEducation
         setEducationData({...educationData, bullets: newArray})
     }
 
-    const deleteBullet = (index) => {
-        const newArray = educationData.bullets
-        newArray.splice(index, 1)
-        setEducationData({...educationData, bullets: newArray})
-    }
 
     const deleteBulletNew = (index, bulletIndex) => {
         const newArray = educationData.bullets
@@ -52,14 +34,6 @@ function Education({educationData, setEducationData, educationList, setEducation
         console.log(newArray)
         setEducationData({...educationData, bullets: newArray})
     }
-
-    const handleBulletChange = (index, newValue) => {
-        setEducationData(prev => {
-            const updatedBullets = [...prev.bullets]; // copy array
-            updatedBullets[index] = newValue; // update the specific bullet
-            return { ...prev, bullets: updatedBullets }; // update state
-        });
-        };
 
 
     const newBullet = (index, bulletIndex, newValue) => {
