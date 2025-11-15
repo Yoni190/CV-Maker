@@ -12,6 +12,7 @@ import Skill from './Skill'
 function App() {
 
   const [educationList, setEducationList] = useState([1])
+  const [workList, setWorkList] = useState([1])
 
   const container = {
     display: 'flex',
@@ -48,12 +49,12 @@ function App() {
   })
 
   const [workData, setWorkData] = useState({
-    companyName: "",
-    position: "",
-    city: "",
-    workStart: "", 
-    workEnd: "",
-    bullets: [""]
+    companyName: [""],
+    position: [""],
+    city: [""],
+    workStart: [""], 
+    workEnd: [""],
+    bullets: [[""]]
   })
 
   const [skillData, setSkillData] = useState({
@@ -70,7 +71,7 @@ function App() {
   const tabComponents = [
     <Personal formData={formData} setFormData={setFormData} />,
     <Education educationData={educationData} setEducationData={setEducationData} educationList={educationList} setEducationList={setEducationList}/>,
-    <Work workData={workData} setWorkData={setWorkData}/>,
+    <Work workData={workData} setWorkData={setWorkData} workList={workList} setWorkList={setWorkList}/>,
     <Skill skillData={skillData} setSkillData={setSkillData} />
   ]
 

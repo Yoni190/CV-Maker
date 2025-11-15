@@ -100,8 +100,8 @@ function Education({educationData, setEducationData, educationList, setEducation
 
     return (
         <div style={container}>
-            <h2 style={{ textAlign: 'left' }}>Education</h2>
             <div className="flex justify-between mb-2">
+                <h2 style={{ textAlign: 'left' }}>Education</h2>
                 <button className='bg-green-600 px-4 py-1 text-white rounded-sm hover:bg-green-700 transition-all duration-300 hover:scale-105' onClick={addEducation}>Add</button>
             </div>
 

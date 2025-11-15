@@ -1,6 +1,6 @@
 import Info from "./Info"
 
-function Work({ workData, setWorkData }) {
+function Work({ workData, setWorkData, workList, setWorkList}) {
     const container = {
         display: 'flex',
         flexDirection: 'column',
@@ -13,6 +13,12 @@ function Work({ workData, setWorkData }) {
     const onChange = (event) => {
         const { name, value } = event.target
         setWorkData({...workData, [name]: value})
+    }
+
+    const newOnChange = (event, index, type) => {
+        const names = workData[type]
+        names[index] = event.target.value
+        setWorkData({...workData, [type]: names})
     }
 
     const addBullet = () => {
@@ -35,27 +41,83 @@ function Work({ workData, setWorkData }) {
         });
         };
 
+        const addWork = () => {
+        
+        const names = ["", ...workData.companyName];
+        const positions = ["", ...workData.position];
+        const cities = ["", ...workData.city];
+        const startDates = ["", ...workData.workStart];
+        const endDates = ["", ...workData.workEnd];
+
+        const bullets = [[""], ...workData.bullets]
+
+
+
+        setWorkData({
+            ...workData,
+            companyName: names,
+            position: positions,
+            city: cities,
+            workStart: startDates,
+            workEnd: endDates,
+            bullets: bullets
+        });
+        setWorkList(prev => [1, ...prev]);
+        };
+
+        const newBullet = (index, bulletIndex, newValue) => {
+            const updatedbullets = workData.bullets
+            console.log(`Index: ${index}, Bullet Index: ${bulletIndex}`)
+            console.log(`New Value: ${newValue}`)
+            console.log(updatedbullets[index])
+            updatedbullets[index][bulletIndex] = newValue
+            setWorkData({...workData, bullets: updatedbullets})
+        }
+
+        const addBulletNew = (index) => {
+            const newArray = workData.bullets
+            console.log(`Before Add: ${newArray}`)
+            newArray[index][workData.bullets[index].length] = ""
+            console.log(`After Add: ${newArray}`)
+            setWorkData({...workData, bullets: newArray})
+        }
+
+        const deleteBulletNew = (index, bulletIndex) => {
+            const newArray = workData.bullets
+            newArray[index].splice(bulletIndex, 1)
+            console.log(newArray)
+            setWorkData({...workData, bullets: newArray})
+        }
+
     
     return (
         <div style={container}>
-            <h2 style={{ textAlign: 'left' }}>Work Experience</h2>
-            <Info labelName="Company Name" inputName="companyName" value={workData.companyName} onChangeText={onChange} />
-            <Info labelName="Position" inputName="position" value={workData.position} onChangeText={onChange} />
-            <Info labelName="City" inputName="city" value={workData.city} onChangeText={onChange} />
-            <Info labelName="Start Date" inputName="workStart" value={workData.workStart} onChangeText={onChange} />
-            <Info labelName="End Date" inputName="workEnd" value={workData.workEnd} onChangeText={onChange} />
-            {/* Make the bullet input text area */}
-            {workData.bullets.map((bullet, index) => (
-                <div key={index}>
-                    <label htmlFor="bullet">Bullet {index+1}</label>
-                    <div className="bullets" style={{ display: 'flex'}}>
-                        <textarea className="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet} style={{ flex: 1 }} onChange={(e) => handleBulletChange(index, e.target.value)}/>
-                        <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={addBullet}>+</button>
-                        {workData.bullets.length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBullet(index)}>-</button>}
-                    </div>
+            <div className="flex justify-between mb-2">
+                <h2 style={{ textAlign: 'left' }}>Work Experience</h2>
+                <button className='bg-green-600 px-4 py-1 text-white rounded-sm hover:bg-green-700 transition-all duration-300 hover:scale-105' onClick={addWork}>Add</button>
+            </div>
+            {workList.map((work, index) => (
+                <div className="flex flex-col border mb-5 p-2 rounded-md" key={index}>
+                    <Info labelName="Company Name" inputName="companyName" value={workData.companyName[index]} onChangeText={(e) => newOnChange(e, index, 'companyName')} />
+                    <Info labelName="Position" inputName="position" value={workData.position[index]} onChangeText={(e) => newOnChange(e, index, 'position')} />
+                    <Info labelName="City" inputName="city" value={workData.city[index]} onChangeText={(e) => newOnChange(e, index, 'city')} />
+                    <Info labelName="Start Date" inputName="workStart" value={workData.workStart[index]} onChangeText={(e) => newOnChange(e, index, 'workStart')} />
+                    <Info labelName="End Date" inputName="workEnd" value={workData.workEnd[index]} onChangeText={(e) => newOnChange(e, index, 'workEnd')} />
+                    {/* Make the bullet input text area */}
+                    {workData.bullets[index].map((bullet, bulletIndex) => (
+                        <div key={bulletIndex}>
+                            <label htmlFor="bullet">Bullet {bulletIndex+1}</label>
+                            <div className="bullets" style={{ display: 'flex'}}>
+                                <textarea className="border p-2 rounded-md" type="text" name="bullet" id="bullet" value={bullet} style={{ flex: 1 }} onChange={(e) => newBullet(index, bulletIndex, e.target.value)}/>
+                                <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => addBulletNew(index)}>+</button>
+                                {workData.bullets[index].length > 1 && <button className="border px-4 rounded-lg text-white bg-gray-900" onClick={() => deleteBulletNew(index, bulletIndex)}>-</button>}
+                            </div>
+                        </div>
+                        
+                    ))}
                 </div>
-                
             ))}
+            
         </div>
         
     )
